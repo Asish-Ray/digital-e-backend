@@ -20,7 +20,5 @@ app.use(authenticate);
 app.use('/wallet', walletRoutes); // /wallet/fund, /wallet/pay, /wallet/bal, /wallet/stmt
 app.use('/product', productRoutes); // /product, /buy
 app.use('/purchase', purchaseRoutes);
-app.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
-});
+
 export default app;
