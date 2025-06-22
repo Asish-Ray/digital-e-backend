@@ -143,16 +143,6 @@ CURRENCY_API_KEY=your_currencyapi_key
 
 ---
 
-## 📦 Local Development
-
-```bash
-git clone https://github.com/yourusername/digital-wallet-backend.git
-cd digital-wallet-backend
-npm install
-npm run dev
-```
-
----
 
 ## 📤 Deploy to Vercel
 
