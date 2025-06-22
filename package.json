@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
     "axios": "^1.10.0",
     "base-64": "^1.0.0",
     "basic-auth": "^2.0.1",
@@ -11,18 +12,17 @@
   },
   "name": "digital-e",
   "version": "1.0.0",
-   "main": "src/index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node src/index.js",
-  "dev": "nodemon src/index.js"
-
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A secure and RESTful digital wallet backend built with **Node.js**, **Express.js**, and **PostgreSQL**. It supports user authentication, wallet funding, peer-to-peer payments, product purchases, and currency conversion via an external API.",
   "devDependencies": {
     "nodemon": "^3.1.10"
   }
