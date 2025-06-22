@@ -1,9 +1,12 @@
-🏦 Digital Wallet Backend
+# 🏦 Digital Wallet Backend
 
-A secure and RESTful digital wallet backend built with Node.js, Express.js, and PostgreSQL. It supports user authentication, wallet funding, peer-to-peer payments, product purchases, and currency conversion via an external API.
+A secure and RESTful digital wallet backend built with **Node.js**, **Express.js**, and **PostgreSQL**. It supports user authentication, wallet funding, peer-to-peer payments, product purchases, and currency conversion via an external API.
 
-📁 Project Structure
+---
 
+## 📁 Project Structure
+
+```text
 digital-wallet-backend/
 ├── src/
 │   └── index.js                # Entry point (used for Vercel)
@@ -27,129 +30,53 @@ digital-wallet-backend/
 ├── package.json                # NPM dependencies & scripts
 ├── package-lock.json           # Dependency lock file
 └── README.md                   # Project documentation
+```
 
-🚀 Features
+---
 
-🔐 Basic Auth with username/password (bcrypt)
+## 🚀 Features
 
-💰 Fund and manage wallet balance
+* 🔐 Basic Auth with username/password (bcrypt)
+* 💰 Fund and manage wallet balance
+* 🔄 Pay other users
+* 🌍 Real-time currency conversion using [currencyapi.com](https://currencyapi.com)
+* 📦 Product catalog (add/list)
+* 🛒 Purchase products
+* 🧾 Transaction and purchase history
 
-🔄 Pay other users
+---
 
-🌍 Real-time currency conversion using currencyapi.com
+## ⚙️ Technologies
 
-📦 Product catalog (add/list)
+* Node.js + Express.js
+* PostgreSQL (via Docker)
+* bcrypt for password hashing
+* pg for PostgreSQL queries
+* dotenv for environment configs
+* Vercel for deployment
 
-🛒 Purchase products
+---
 
-🧾 Transaction and purchase history
+## 🧪 API Overview
 
-⚙️ Technologies
+| Method | Endpoint           | Auth | Description                    |
+| ------ | ------------------ | ---- | ------------------------------ |
+| POST   | /auth/register     | ❌    | Register a new user            |
+| POST   | /wallet/fund       | ✅    | Add funds to wallet            |
+| POST   | /wallet/pay        | ✅    | Transfer money to another user |
+| GET    | /wallet/bal        | ✅    | Check balance with conversion  |
+| GET    | /wallet/stmt       | ✅    | View transaction history       |
+| POST   | /product           | ✅    | Add product                    |
+| GET    | /product           | ❌    | List all products              |
+| POST   | /product/buy       | ✅    | Purchase a product             |
+| GET    | /product/purchases | ✅    | List your purchases            |
+| DELETE | /product/\:id      | ✅    | (Optional) Delete a product    |
 
-Node.js + Express.js
+---
 
-PostgreSQL (via Docker)
+## 🐘 PostgreSQL Setup
 
-bcrypt for password hashing
-
-pg for PostgreSQL queries
-
-dotenv for environment configs
-
-Vercel for deployment
-
-🧪 API Overview
-
-Method
-
-Endpoint
-
-Auth
-
-Description
-
-POST
-
-/auth/register
-
-❌
-
-Register a new user
-
-POST
-
-/wallet/fund
-
-✅
-
-Add funds to wallet
-
-POST
-
-/wallet/pay
-
-✅
-
-Transfer money to another user
-
-GET
-
-/wallet/bal
-
-✅
-
-Check balance with conversion
-
-GET
-
-/wallet/stmt
-
-✅
-
-View transaction history
-
-POST
-
-/product
-
-✅
-
-Add product
-
-GET
-
-/product
-
-❌
-
-List all products
-
-POST
-
-/product/buy
-
-✅
-
-Purchase a product
-
-GET
-
-/product/purchases
-
-✅
-
-List your purchases
-
-DELETE
-
-/product/:id
-
-✅
-
-(Optional) Delete a product
-
-🐘 PostgreSQL Setup
-
+```sql
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username TEXT UNIQUE NOT NULL,
@@ -179,9 +106,13 @@ CREATE TABLE purchases (
   product_id INTEGER REFERENCES products(id),
   purchased_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
+```
 
-🐳 Docker Configuration
+---
 
+## 🐳 Docker Configuration
+
+```yaml
 version: '3.8'
 services:
   db:
@@ -199,30 +130,41 @@ services:
 
 volumes:
   pgdata:
+```
 
-🌐 Environment Variables (.env)
+---
 
+## 🌐 Environment Variables (.env)
+
+```env
 DATABASE_URL=postgres://postgres:yourpassword@localhost:5432/walletdb
 CURRENCY_API_KEY=your_currencyapi_key
+```
 
-📦 Local Development
+---
 
+## 📦 Local Development
+
+```bash
 git clone https://github.com/yourusername/digital-wallet-backend.git
 cd digital-wallet-backend
 npm install
 npm run dev
+```
 
-📤 Deploy to Vercel
+---
 
-Connect GitHub repo to Vercel
+## 📤 Deploy to Vercel
 
-Add .env variables in Vercel dashboard
+1. Connect GitHub repo to Vercel
+2. Add `.env` variables in Vercel dashboard
+3. Set root to `/src` and entry file to `index.js`
+4. Deploy 🚀
 
-Set root to /src and entry file to index.js
+---
 
-Deploy 🚀
+## 📫 Author
 
-📫 Author
-
-Asish Ray🔗 GitHub
-
+**Asish Ray**
+🔗 [GitHub](https://github.com/Asish-Ray)
+📧 [Email](mailto:aray19069@gmail.com)
