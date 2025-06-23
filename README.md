@@ -1,35 +1,33 @@
+Here’s a modified version of your `README.md` to reflect your updated setup with **Supabase** instead of local Docker/PostgreSQL:
+
+---
+
 # 🏦 Digital Wallet Backend
 
-A secure and RESTful digital wallet backend built with **Node.js**, **Express.js**, and **PostgreSQL**. It supports user authentication, wallet funding, peer-to-peer payments, product purchases, and currency conversion via an external API.
+A secure and RESTful digital wallet backend built with Node.js, Express.js, PostgreSQL (via **Supabase**), and deployed on **Vercel**. It supports user authentication, wallet funding, peer-to-peer payments, product purchases, and currency conversion via an external API.
 
 ---
 
 ## 📁 Project Structure
 
-```text
+```
 digital-wallet-backend/
-├── src/
-│   └── index.js                # Entry point (used for Vercel)
-│
-├── routes/
-│   ├── auth.js                 # User registration & authentication
-│   ├── wallet.js               # Wallet operations (fund, pay, balance, history)
-│   ├── purchase.js             # Purchase routes (buy/view)
-│   └── product.js              # Product catalog APIs
-│
+├── src/                       # Entry point
+│   └── index.js
+├── routes/                   # Express routers
+│   ├── auth.js
+│   ├── wallet.js
+│   ├── product.js
+│   └── purchase.js
 ├── config/
-│   └── db.js                   # PostgreSQL DB connection setup
-│
-├── middleware/
-│   └── authenticate.js         # Basic Auth middleware
-│
-├── .env                        # Environment variables
-├── .gitignore                  # Ignored files
-├── vercel.json                 # Vercel deployment config
-├── docker-compose.yml          # Docker service definitions
-├── package.json                # NPM dependencies & scripts
-├── package-lock.json           # Dependency lock file
-└── README.md                   # Project documentation
+│   └── db.js                 # Supabase/PostgreSQL DB connection
+├── middlewares/
+│   └── authenticate.js       # Basic Auth middleware
+├── .env                      # Environment variables
+├── vercel.json               # Vercel deployment config
+├── package.json              # NPM dependencies
+├── README.md                 # Project documentation
+└── ...
 ```
 
 ---
@@ -46,35 +44,45 @@ digital-wallet-backend/
 
 ---
 
-## ⚙️ Technologies
+## ⚙️ Tech Stack
 
 * Node.js + Express.js
-* PostgreSQL (via Docker)
+* **Supabase** (PostgreSQL)
 * bcrypt for password hashing
-* pg for PostgreSQL queries
-* dotenv for environment configs
+* `pg` for SQL queries
+* dotenv for env config
 * Vercel for deployment
 
 ---
 
-## 🧪 API Overview
+## 🔐 Environment Variables (`.env`)
 
-| Method | Endpoint           | Auth | Description                    |
-| ------ | ------------------ | ---- | ------------------------------ |
-| POST   | /auth/register     | ❌    | Register a new user            |
-| POST   | /wallet/fund       | ✅    | Add funds to wallet            |
-| POST   | /wallet/pay        | ✅    | Transfer money to another user |
-| GET    | /wallet/bal        | ✅    | Check balance with conversion  |
-| GET    | /wallet/stmt       | ✅    | View transaction history       |
-| POST   | /product           | ✅    | Add product                    |
-| GET    | /product           | ❌    | List all products              |
-| POST   | /product/buy       | ✅    | Purchase a product             |
-| GET    | /product/purchases | ✅    | List your purchases            |
-| DELETE | /product/\:id      | ✅    | (Optional) Delete a product    |
+```
+DATABASE_URL=your_supabase_postgres_connection_url
+CURRENCY_API_KEY=your_currencyapi.com_key
+```
+
+> ✅ Make sure you add these in your Vercel project dashboard as well under "Project Settings → Environment Variables".
 
 ---
 
-## 🐘 PostgreSQL Setup
+## 🧪 API Endpoints
+
+| Method | Endpoint             | Auth | Description                    |
+| ------ | -------------------- | ---- | ------------------------------ |
+| POST   | `/auth/register`     | ❌    | Register a new user            |
+| POST   | `/wallet/fund`       | ✅    | Add funds to wallet            |
+| POST   | `/wallet/pay`        | ✅    | Transfer money to another user |
+| GET    | `/wallet/bal`        | ✅    | Check balance (with currency)  |
+| GET    | `/wallet/stmt`       | ✅    | View transaction history       |
+| POST   | `/product`           | ✅    | Add product                    |
+| GET    | `/product`           | ❌    | List all products              |
+| POST   | `/product/buy`       | ✅    | Purchase a product             |
+| GET    | `/product/purchases` | ✅    | List your purchases            |
+
+---
+
+## 🐘 PostgreSQL Schema (Supabase)
 
 ```sql
 CREATE TABLE users (
@@ -110,48 +118,36 @@ CREATE TABLE purchases (
 
 ---
 
-## 🐳 Docker Configuration
+## 📦 Deployment
 
-```yaml
-version: '3.8'
-services:
-  db:
-    image: postgres:15
-    container_name: wallet_postgres
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: yourpassword
-      POSTGRES_DB: walletdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+### ➕ Supabase Setup
 
-volumes:
-  pgdata:
-```
+* Go to [Supabase](https://supabase.com/)
+* Create a new project and get the **PostgreSQL connection string**
+* Recreate the above tables using SQL editor in Supabase dashboard
+* Use the DB URL in `.env` → `DATABASE_URL`
 
----
+### 🚀 Vercel Deployment
 
-## 🌐 Environment Variables (.env)
+* Push your code to GitHub
+* Connect the GitHub repo to [Vercel](https://vercel.com)
+* Set environment variables under Project → Settings → Environment Variables:
 
-```env
-DATABASE_URL=postgres://postgres:yourpassword@localhost:5432/walletdb
-CURRENCY_API_KEY=your_currencyapi_key
-```
+  * `DATABASE_URL`
+  * `CURRENCY_API_KEY`
+* Set `build command` to: `npm install`
+* Set `output directory` to: leave empty
+* Set `root directory`
+* Deploy!
 
----
+> Your deployed backend will be live at: `https://digital-e-backend.vercel.app`
 
-
-## 📤 Deploy to Vercel
-
-1. Deploy 🚀
-The Deployment domain = `https://digital-e-backend.vercel.app`
 ---
 
 ## 📫 Author
 
 **Asish Ray**
 🔗 [GitHub](https://github.com/Asish-Ray)
-📧 [Email](mailto:aray19069@gmail.com)
+📧 [Email](mailto:your.email@example.com)
+
+---
