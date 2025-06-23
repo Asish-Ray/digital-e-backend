@@ -11,7 +11,6 @@ const app = express();
 app.use(express.json());
 
 // Public Route
-
 app.use('/auth', authRoutes); // /auth/register
 app.use('/product', productRoutes); 
 // Auth middleware for protected routes
