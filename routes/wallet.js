@@ -20,6 +20,7 @@ router.get('/bal', async (req, res) => {
     const data = await response.json();
 
     const rate = data.data?.[currency]?.value;
+    console.log('Fetched currency data:', data);
     if (!rate) return res.status(400).json({ error: 'Unsupported currency' });
 
     const converted = Number((balanceINR * rate).toFixed(2));
