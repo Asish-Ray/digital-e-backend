@@ -75,7 +75,7 @@ CURRENCY_API_KEY=your_currencyapi.com_key
 | POST   | `/wallet/pay`        | ✅    | Transfer money to another user |
 | GET    | `/wallet/bal`        | ✅    | Check balance (with currency)  |
 | GET    | `/wallet/stmt`       | ✅    | View transaction history       |
-| POST   | `/product`           | ✅    | Add product                    |
+| POST   | `/product`           | ❌    | Add product                    |
 | GET    | `/product`           | ❌    | List all products              |
 | POST   | `/product/buy`       | ✅    | Purchase a product             |
 | GET    | `/product/purchases` | ✅    | List your purchases            |
