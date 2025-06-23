@@ -146,11 +146,8 @@ CURRENCY_API_KEY=your_currencyapi_key
 
 ## 📤 Deploy to Vercel
 
-1. Connect GitHub repo to Vercel
-2. Add `.env` variables in Vercel dashboard
-3. Set root to `/src` and entry file to `index.js`
-4. Deploy 🚀
-
+1. Deploy 🚀
+The Deployment domain = `https://digital-e-backend.vercel.app`
 ---
 
 ## 📫 Author
