@@ -68,15 +68,14 @@ router.post('/pay', async (req, res) => {
 
     if (sender.balance < amt) return res.status(400).json({ error: 'Insufficient balance' });
 
-    // Deduct from sender
+   
     const newSenderBal = sender.balance - amt;
     await pool.query('UPDATE users SET balance = $1 WHERE id = $2', [newSenderBal, sender.id]);
 
-    // Add to recipient
     const newRecipientBal = recipient.balance + amt;
     await pool.query('UPDATE users SET balance = $1 WHERE id = $2', [newRecipientBal, recipient.id]);
 
-    // Transactions
+    
     await pool.query(
       'INSERT INTO transactions (user_id, kind, amt, updated_bal) VALUES ($1, $2, $3, $4)',
       [sender.id, 'debit', amt, newSenderBal]

@@ -3,7 +3,7 @@ import pool from '../config/db.js';
 
 const router = express.Router();
 
-// Add a new product to the global catalog
+
 router.post('/add', async (req, res) => {
   const { name, price, description } = req.body;
 

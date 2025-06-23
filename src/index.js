@@ -12,10 +12,10 @@ app.use(express.json());
 
 // Public Route
 app.use('/auth', authRoutes); 
-
+app.use('/product', productRoutes); 
 
 app.use(authenticate);
-app.use('/product', productRoutes); 
+
 
 app.use('/wallet', walletRoutes); 
 app.use('/purchase', purchaseRoutes);

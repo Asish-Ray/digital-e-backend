@@ -4,7 +4,7 @@ import pool from '../config/db.js';
 
 const router = express.Router();
 
-// View all purchases made by the logged-in user
+
 router.get('/purchases', async (req, res) => {
   const userId = req.user.id;
 
@@ -32,7 +32,7 @@ router.get('/purchases', async (req, res) => {
 
 
 
-// Buy a product (POST /product/buy)
+// Buy 
 router.post('/buy', async (req, res) => {
   const { product_id } = req.body;
   const user = req.user;
@@ -55,7 +55,7 @@ router.post('/buy', async (req, res) => {
         'INSERT INTO transactions (user_id, kind, amt, updated_bal) VALUES ($1, $2, $3, $4)',
       [user.id, 'debit', product.price, newBal]
     );
-      // To add it to the purchase table
+      // To add pur tab
     await pool.query(
       'INSERT INTO purchases (user_id, product_id) VALUES ($1, $2)',
       [user.id, product.id]
@@ -67,12 +67,12 @@ router.post('/buy', async (req, res) => {
     res.status(500).json({ error: 'Purchase failed' });
   }
 });
-// Delete a product from the catalog (DELETE /product/:id)
+// Delete a prod
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Check if the product exists
+   
     const check = await pool.query('SELECT * FROM products WHERE id = $1', [id]);
     if (check.rows.length === 0) {
       return res.status(404).json({ error: 'Product not found' });
