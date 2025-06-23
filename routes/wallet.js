@@ -15,6 +15,7 @@ router.get('/bal', async (req, res) => {
       return res.json({ balance: balanceINR, currency: 'INR' });
     }
 
+
     const apiKey = process.env.CURRENCY_API_KEY;
     const response = await fetch(`https://api.currencyapi.com/v3/latest?apikey=${apiKey}&base_currency=INR`);
     const data = await response.json();
