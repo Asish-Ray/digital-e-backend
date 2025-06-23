@@ -77,8 +77,8 @@ CURRENCY_API_KEY=your_currencyapi.com_key
 | GET    | `/wallet/stmt`       | ✅    | View transaction history       |
 | POST   | `/product`           | ❌    | Add product                    |
 | GET    | `/product`           | ❌    | List all products              |
-| POST   | `/product/buy`       | ✅    | Purchase a product             |
-| GET    | `/product/purchases` | ✅    | List your purchases            |
+| POST   | `/purchase/buy`      | ✅    | Purchase a product             |
+| GET    | `/purchase/purchases`| ✅    | List your purchases            |
 
 ---
 
