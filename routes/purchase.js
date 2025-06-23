@@ -15,16 +15,17 @@ router.get('/purchases', async (req, res) => {
         pr.name AS product_name,
         pr.price,
         pr.description,
-        p.timestamp
+        p.purchased_at
       FROM purchases p
       JOIN products pr ON p.product_id = pr.id
       WHERE p.user_id = $1
-      ORDER BY p.timestamp 
+      ORDER BY p.purchased_at 
     `, [userId]);
 
     res.json(result.rows);
   } catch (err) {
-    console.error('FETCH PURCHASES ERROR:', err);
+    console.error('FETCH PURCHASES ERROR:', err.stack || err.message);
+
     res.status(500).json({ error: 'Failed to fetch purchases' });
   }
 });
