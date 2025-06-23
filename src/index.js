@@ -11,14 +11,13 @@ const app = express();
 app.use(express.json());
 
 // Public Route
-app.use('/auth', authRoutes); // /auth/register
-app.use('/product', productRoutes); // /product
-// Auth middleware for protected routes
+app.use('/auth', authRoutes); 
+app.use('/product', productRoutes); 
+
 app.use(authenticate);
 
-// Protected Routes
-app.use('/wallet', walletRoutes); // /wallet/fund, /wallet/pay, /wallet/bal, /wallet/stmt
 
+app.use('/wallet', walletRoutes); 
 app.use('/purchase', purchaseRoutes);
 app.listen(3000, () => {
   console.log('Server running at http://localhost:3000');
